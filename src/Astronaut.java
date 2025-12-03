@@ -40,9 +40,16 @@ public class Astronaut {
     public void move() {
         if (xpos >= 1000-width){//bounce off right wall
             dx=-dx;
-
         }
-
+        if (xpos <= 0){//bounce off left wall
+            dx=-dx;
+        }
+        if (ypos >= 700-height){//bounce off bottom wall
+            dy=-dy;
+        }
+        if (ypos <= 0){//bounce off top wall
+            dy=-dy;
+        }
         xpos = xpos + dx;
         ypos = ypos + dy;
  
