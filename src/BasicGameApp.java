@@ -113,7 +113,19 @@ public class BasicGameApp implements Runnable {
         astro2.move();
         asteroid1.move();
         asteroid2.move();
+        crashing();
 	}
+
+    public void crashing (){
+        //check to see if astronauts crash into each other
+        if(astro.hitbox.intersects(astro2.hitbox)){
+            System.out.println("Crash!!");
+            astro.dx=-astro.dx;
+            astro2.dx=-astro2.dx;
+            astro.dy=-astro.dy;
+            astro2.dy=-astro2.dy;
+        }
+    }
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
    public void pause(int time ){
