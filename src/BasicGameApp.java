@@ -114,6 +114,7 @@ public class BasicGameApp implements Runnable {
         asteroid1.move();
         asteroid2.move();
         crashing();
+        smashing();
 	}
 
     public void crashing (){
@@ -126,7 +127,18 @@ public class BasicGameApp implements Runnable {
             astro2.dy=-astro2.dy;
         }
     }
-	
+	public void smashing (){
+        if(asteroid1.hitbox.intersects(asteroid2.hitbox)){
+            System.out.println("Smash!!");
+            asteroid1.dx=-asteroid1.dx;
+            asteroid2.dx=-asteroid2.dx;
+            asteroid1.dy=-asteroid1.dy;
+            asteroid2.dy=-asteroid2.dy;
+        }
+
+    }
+
+
    //Pauses or sleeps the computer for the amount specified in milliseconds
    public void pause(int time ){
    		//sleep

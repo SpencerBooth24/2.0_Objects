@@ -1,3 +1,7 @@
+import org.w3c.dom.css.Rect;
+
+import java.awt.*;
+
 public class Asteroid {
     //VARIABLE DECLARATION SECTION
     //Here's where you state which variables you are going to use.
@@ -9,7 +13,7 @@ public class Asteroid {
     public int width;
     public int height;
     public boolean isAlive;            //a boolean to denote if the hero is alive or dead.
-
+    public Rectangle hitbox;
 
     // METHOD DEFINITION SECTION
 
@@ -22,8 +26,8 @@ public class Asteroid {
     public Asteroid(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =4;
-        dy =30;
+        dx =3;
+        dy =3;
         width = 85;
         height = 85;
         isAlive = false;
@@ -48,6 +52,8 @@ public class Asteroid {
         //todo: make it wrap when it hits the top and bottom
         xpos = xpos + dx;
         ypos = ypos + dy;
+
+        hitbox= new Rectangle (xpos,ypos,width,height);
 
 
     }
