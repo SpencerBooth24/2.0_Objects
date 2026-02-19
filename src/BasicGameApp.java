@@ -13,6 +13,8 @@
 
 //Graphics Libraries
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
@@ -21,8 +23,8 @@ import javax.swing.JPanel;
 
 //*******************************************************************************
 // Class Definition Section
-
-public class BasicGameApp implements Runnable {
+//Step 1: implement keyListener
+public class BasicGameApp implements Runnable, KeyListener {
 
    //Variable Definition Section
    //Declare the variables used in the program 
@@ -169,7 +171,11 @@ public class BasicGameApp implements Runnable {
    
       // creates a canvas which is a blank rectangular area of the screen onto which the application can draw
       // and trap input events (Mouse and Keyboard events)
-      canvas = new Canvas();  
+      canvas = new Canvas();
+
+      //Step 2: set canvas as the KeyListener
+       canvas.addKeyListener(this);
+
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
       canvas.setIgnoreRepaint(true);
    
@@ -213,4 +219,43 @@ public class BasicGameApp implements Runnable {
 
 		bufferStrategy.show();
 	}
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println("key typed "+ e.getKeyCode());
+        //up arrow is 38, right 39, down 40, left 37
+        if (e.getKeyCode()==38){
+            System.out.println("Pressed up arrow");
+            astro.dy=-Math.abs(astro.dy);
+        }
+        if (e.getKeyCode()==37){
+            System.out.println("Pressed up arrow");
+            astro.dx=-Math.abs(astro.dx);
+        }
+        if (e.getKeyCode()==39){
+            System.out.println("Pressed up arrow");
+            astro.dx=Math.abs(astro.dx);
+        }
+        if (e.getKeyCode()==40){
+            System.out.println("Pressed up arrow");
+            astro.dy=Math.abs(astro.dy);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+    //step 3: add key listener methods
+
+
+
+
+
+
 }
