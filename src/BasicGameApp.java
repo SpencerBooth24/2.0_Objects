@@ -15,6 +15,8 @@
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
@@ -24,7 +26,8 @@ import javax.swing.JPanel;
 //*******************************************************************************
 // Class Definition Section
 //Step 1: implement keyListener
-public class BasicGameApp implements Runnable, KeyListener {
+//setp 1: implement mouse listener
+public class BasicGameApp implements Runnable, KeyListener, MouseListener {
 
    //Variable Definition Section
    //Declare the variables used in the program 
@@ -174,6 +177,8 @@ public class BasicGameApp implements Runnable, KeyListener {
       canvas = new Canvas();
 
       //Step 2: set canvas as the KeyListener
+       //step 2: set canvas as mouse listener
+       canvas.addMouseListener(this);
        canvas.addKeyListener(this);
 
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
@@ -231,25 +236,74 @@ public class BasicGameApp implements Runnable, KeyListener {
         //up arrow is 38, right 39, down 40, left 37
         if (e.getKeyCode()==38){
             System.out.println("Pressed up arrow");
-            astro.dy=-Math.abs(astro.dy);
+            //astro.dy=-Math.abs(astro.dy);
+            astro.dy=-5;
         }
         if (e.getKeyCode()==37){
             System.out.println("Pressed up arrow");
-            astro.dx=-Math.abs(astro.dx);
+            //astro.dx=-Math.abs(astro.dx);
+            astro.dx=-5;
         }
         if (e.getKeyCode()==39){
             System.out.println("Pressed up arrow");
-            astro.dx=Math.abs(astro.dx);
+            //astro.dx=Math.abs(astro.dx);
+            astro.dx=5;
         }
         if (e.getKeyCode()==40){
             System.out.println("Pressed up arrow");
-            astro.dy=Math.abs(astro.dy);
+            //astro.dy=Math.abs(astro.dy);
+            astro.dy=5;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        System.out.println("key typed "+ e.getKeyCode());
+        //up arrow is 38, right 39, down 40, left 37
+        if (e.getKeyCode()==38){
+            System.out.println("Pressed up arrow");
+            astro.dy=0;
+        }
+        if (e.getKeyCode()==37){
+            System.out.println("Pressed up arrow");
+            astro.dx=0;
+        }
+        if (e.getKeyCode()==39){
+            System.out.println("Pressed up arrow");
+            astro.dx=0;
+        }
+        if (e.getKeyCode()==40){
+            System.out.println("Pressed up arrow");
+            astro.dy=0;
+        }
+    }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        System.out.println(e.getPoint());
+        asteroid2.xpos=e.getX();
+        asteroid2.ypos=e.getY();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        System.out.println("Entered!");
+        astro2.isAlive=true;
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        astro2.isAlive=false;
     }
     //step 3: add key listener methods
 
