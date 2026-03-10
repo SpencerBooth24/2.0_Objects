@@ -53,6 +53,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
     private Asteroid asteroid1;
     private Asteroid asteroid2;
 
+    public Asteroid[] asteroids;
 
    // Main method definition
    // This is the code that runs first and automatically
@@ -92,6 +93,12 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         asteroid1= new Asteroid(100,200);
         asteroid1.dx = -asteroid1.dx;
         asteroid2= new Asteroid(500,200);
+
+        asteroids=new Asteroid[5];
+        //todo: fill the asteroid array with asteroids at random locations
+        for (int x=0;x<asteroids.length;x++){
+            asteroids[x]= new Asteroid((int)(Math.random()*1000), (int)(Math.random()*700));
+        }
 
 	}// BasicGameApp()
 
@@ -217,6 +224,11 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         }
         g.drawImage(asteroidPic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
         g.drawImage(asteroidPic, asteroid2.xpos, asteroid2.ypos, asteroid2.width, asteroid2.height, null);
+
+        for (int x=0;x<asteroids.length;x++){
+            g.drawImage(asteroidPic, (int)(Math.random()*1000), (int)(Math.random()*700),asteroids[x].width,asteroids[x].height,null );
+        }
+
         g.setColor(Color.green);
         g.fillRect(100,300,100,100);
         //end drawing things
