@@ -131,6 +131,9 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         asteroid2.move();
         crashing();
         smashing();
+        for (int x=0;x<asteroids.length;x++){
+            asteroids[x].move();
+        }
 	}
 
     public void crashing (){
@@ -154,11 +157,20 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
             //asteroid1.dy=-asteroid1.dy;
             //asteroid2.dy=-asteroid2.dy;
         }
-        if(!asteroid1.hitbox.intersects(asteroid2.hitbox)){
+        if(asteroid1.hitbox.intersects(asteroid2.hitbox)){
             asteroid1.isCrashing=false;
         }
 
+
+        for (int x=0;x<asteroids.length;x++){
+            if(asteroids[x].hitbox.intersects(astro.hitbox)){
+                System.out.println("asteroid smash");
+            }
+        }
+
     }
+
+
 
 
    //Pauses or sleeps the computer for the amount specified in milliseconds
@@ -226,7 +238,7 @@ public class BasicGameApp implements Runnable, KeyListener, MouseListener {
         g.drawImage(asteroidPic, asteroid2.xpos, asteroid2.ypos, asteroid2.width, asteroid2.height, null);
 
         for (int x=0;x<asteroids.length;x++){
-            g.drawImage(asteroidPic, (int)(Math.random()*1000), (int)(Math.random()*700),asteroids[x].width,asteroids[x].height,null );
+            g.drawImage(asteroidPic, asteroids[x].xpos, asteroids[x].ypos,asteroids[x].width,asteroids[x].height,null );
         }
 
         g.setColor(Color.green);
